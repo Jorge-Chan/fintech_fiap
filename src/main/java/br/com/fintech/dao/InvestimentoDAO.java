@@ -16,7 +16,7 @@ public class InvestimentoDAO {
 
     // Inserir novo investimento
     public void inserirInvestimento(Investimento investimento) throws SQLException {
-        String sql = "INSERT INTO TB_INVESTIMENTO (id_investimento, id_usuario, tb_investimento, mn_investimento, vl_inicial, dt_investimento, vl_rentabilidade, ds_risco, dt_vencimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_INVESTIMENTO (id_investimento, id_usuario, tb_investimento, mn_investimento, vl_inicial, dt_investimento, vl_rentabilidade, ds_risco, dt_vencimento) VALUES (1, 2, 'renda' , 'renda', 0, 2000-25-25, 2000, 'nada', 2024-10-1614:30:00)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, investimento.getIdInvestimento());
             stmt.setInt(2, investimento.getIdUsuario());

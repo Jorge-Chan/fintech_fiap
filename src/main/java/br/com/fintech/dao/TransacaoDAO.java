@@ -10,16 +10,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class TransacaoDAO {
-    private Connection connection;
+public class TransacaoDAO
+    {
+        private Connection connection;
 
     public TransacaoDAO(Connection connection) {
         this.connection = connection;
     }
 
-    // Método para inserir uma nova Transacao
-    public void inserirTransacao(Transacao transacao) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_TRANSACAO (id_transacao, id_usuario, id_categoria, tp_transacao, ds_transacao, vl_transacao, dt_transacao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        // Método para inserir uma nova Transacao
+        public void inserirTransacao (Transacao transacao) throws SQLException {
+        String sql = "INSERT INTO TB_FIN_TRANSACAO (id_transacao, id_usuario, id_categoria, tp_transacao, ds_transacao, vl_transacao, dt_transacao) VALUES (1, 22, 522220, 'nada', 'nada', 22212121, 2024-10-30)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, transacao.getIdTransacao());
             stmt.setInt(2, transacao.getIdUsuario());
@@ -33,8 +34,8 @@ public class TransacaoDAO {
         }
     }
 
-    // Método para buscar uma Transacao por ID
-    public Transacao buscarTransacaoPorId(int id) throws SQLException {
+        // Método para buscar uma Transacao por ID
+        public Transacao buscarTransacaoPorId ( int id) throws SQLException {
         String sql = "SELECT id_transacao, id_usuario, id_categoria, tp_transacao, ds_transacao, vl_transacao, dt_transacao FROM TB_FIN_TRANSACAO WHERE id_transacao = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -57,8 +58,8 @@ public class TransacaoDAO {
         return null;
     }
 
-    // Método para listar todas as Transacoes
-    public List<Transacao> listarTodasTransacoes() throws SQLException {
+        // Método para listar todas as Transacoes
+        public List<Transacao> listarTodasTransacoes () throws SQLException {
         List<Transacao> transacoes = new ArrayList<>();
         String sql = "SELECT id_transacao, id_usuario, id_categoria, tp_transacao, ds_transacao, vl_transacao, dt_transacao FROM TB_FIN_TRANSACAO";
         try (PreparedStatement stmt = connection.prepareStatement(sql);
@@ -80,8 +81,8 @@ public class TransacaoDAO {
         return transacoes;
     }
 
-    // Método para atualizar uma Transacao
-    public void atualizarTransacao(Transacao transacao) throws SQLException {
+        // Método para atualizar uma Transacao
+        public void atualizarTransacao (Transacao transacao) throws SQLException {
         String sql = "UPDATE TB_FIN_TRANSACAO SET id_usuario = ?, id_categoria = ?, tp_transacao = ?, ds_transacao = ?, vl_transacao = ?, dt_transacao = ? WHERE id_transacao = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, transacao.getIdUsuario());
@@ -96,12 +97,12 @@ public class TransacaoDAO {
         }
     }
 
-    // Método para excluir uma Transacao
-    public void excluirTransacao(int id) throws SQLException {
+        // Método para excluir uma Transacao
+        public void excluirTransacao ( int id) throws SQLException {
         String sql = "DELETE FROM TB_FIN_TRANSACAO WHERE id_transacao = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
     }
-}
+    }

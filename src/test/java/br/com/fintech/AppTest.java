@@ -1,38 +1,20 @@
 package br.com.fintech;
 
-import junit.framework.Test;
+import br.com.fintech.dao.CategoriaDAO;
+import br.com.fintech.dao.InvestimentoDAO;
+import br.com.fintech.factory.ConnectionFactory;
+import br.com.fintech.model.Categoria;
+import br.com.fintech.model.Investimento;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-/**
- * Unit test for simple App.
- */
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+;
 public class AppTest 
     extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
 }

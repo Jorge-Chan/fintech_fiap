@@ -16,7 +16,7 @@ public class UsuarioDAO {
 
     // Método para inserir um novo usuário
     public void inserirUsuario(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_USUARIO (id_usuario, nm_usuario, ds_email, dt_senha, dt_cadastro, tp_usuario) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_FIN_USUARIO (id_usuario, nm_usuario, ds_email, dt_senha, dt_cadastro, tp_usuario) VALUES (1, 'Dante', 'ahahahaha', 'ajajajaj', 2024-10-30, 'aaaaa')";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, usuario.getIdUsuario());
             stmt.setString(2, usuario.getNmUsuario());

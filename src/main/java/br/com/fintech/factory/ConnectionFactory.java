@@ -3,19 +3,28 @@ package br.com.fintech.factory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 public class ConnectionFactory {
-    public static void main(String[] args) {
+
+    // Método estático para obter a conexão
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Connection conexao = null;
 
+        // Define o Driver
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+
+        // Abre uma conexão com a URL definida para acesso ao banco
+        conexao = DriverManager.getConnection(
+                "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", "RM555793", "190902");
+
+        return conexao;
+    }
+
+    // Exemplo de uso do método getConnection
+    public static void main(String[] args) {
+        Connection conexao = null;
         try {
-            // Define o Driver
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-
-            // Abre uma conexão com a URL definida para acesso ao banco
-            conexao = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", "RM555793",
-                    "190902");
-
+            conexao = ConnectionFactory.getConnection();
             System.out.println("Conectou!");
 
         } catch (SQLException e) {

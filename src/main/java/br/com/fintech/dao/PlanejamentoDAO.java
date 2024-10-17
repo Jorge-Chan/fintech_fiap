@@ -19,7 +19,7 @@ public class PlanejamentoDAO {
 
     // Método para inserir um novo Planejamento
     public void inserirPlanejamento(Planejamento planejamento) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_PLANEJAMENTO (id_transacao, id_usuario, ds_planejamento, vl_valor_alvo, vl_valor_inicial, dt_inicio, dt_fim) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_FIN_PLANEJAMENTO (id_transacao, id_usuario, ds_planejamento, vl_valor_alvo, vl_valor_inicial, dt_inicio, dt_fim) VALUES (1, 2, 'nada', 55, 5, 2024-10-30, 1)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, planejamento.getIdTransacao());
             stmt.setInt(2, planejamento.getIdUsuario());

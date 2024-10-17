@@ -4,7 +4,7 @@ public class PessoaJuridica  extends Pessoa {  private String dsCnpj;
     private String nmRazaoSocial;
 
     // Construtor vazio
-    public PessoaJuridica() {}
+    public PessoaJuridica(int idPessoa, String dsCnpj, String nmRazaoSocial) {}
 
     // Construtor com parâmetros
     public PessoaJuridica(int idPessoa, String nmPessoa, String dsEndereco, String nrTelefone, int idUsuario, String dsCnpj, String nmRazaoSocial) {

@@ -18,7 +18,7 @@ public class CategoriaDAO {
 
     // Método para inserir uma nova Categoria
     public void inserirCategoria(Categoria categoria) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_CATEGORIA (id_categoria, nm_categoria, tp_categoria) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO TB_FIN_CATEGORIA (id_categoria, nm_categoria, tp_categoria) VALUES (1, 'feifão', 'feijão')";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, categoria.getIdCategoria());
             stmt.setString(2, categoria.getNmCategoria());

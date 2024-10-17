@@ -6,7 +6,7 @@ public class PessoaFisica extends Pessoa{ private String dsCpf;
     private Date dtNascimento;
 
     // Construtor vazio
-    public PessoaFisica() {}
+    public PessoaFisica(int idPessoa, String dsCpf, java.sql.Date dtNascimento) {}
 
     // Construtor com parâmetros
     public PessoaFisica(int idPessoa, String nmPessoa, String dsEndereco, String nrTelefone, int idUsuario, String dsCpf, Date dtNascimento) {

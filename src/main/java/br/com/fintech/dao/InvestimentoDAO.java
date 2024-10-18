@@ -14,24 +14,22 @@ public class InvestimentoDAO {
         this.connection = connection;
     }
 
-    // Inserir novo investimento
+    // Inserir novo investimento (sem datas)
     public void inserirInvestimento(Investimento investimento) throws SQLException {
-        String sql = "INSERT INTO TB_INVESTIMENTO (id_investimento, id_usuario, tb_investimento, mn_investimento, vl_inicial, dt_investimento, vl_rentabilidade, ds_risco, dt_vencimento) VALUES (1, 2, 'renda' , 'renda', 0, 2000-25-25, 2000, 'nada', 2024-10-1614:30:00)";
+        String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_investimento, id_usuario, tb_investimo, mn_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, investimento.getIdInvestimento());
             stmt.setInt(2, investimento.getIdUsuario());
             stmt.setString(3, investimento.getTbInvestimento());
             stmt.setString(4, investimento.getMnInvestimento());
             stmt.setFloat(5, investimento.getVlInicial());
-            stmt.setDate(6, new java.sql.Date(investimento.getDtInvestimento().getTime()));
-            stmt.setFloat(7, investimento.getVlRentabilidade());
-            stmt.setString(8, investimento.getDsRisco());
-            stmt.setDate(9, new java.sql.Date(investimento.getDtVencimento().getTime()));
+            stmt.setFloat(6, investimento.getVlRentabilidade());
+            stmt.setString(7, investimento.getDsRisco());
             stmt.executeUpdate();
         }
     }
 
-    // Buscar investimento por ID
+    // Buscar investimento por ID (sem datas)
     public Investimento buscarInvestimentoPorId(int id) throws SQLException {
         String sql = "SELECT * FROM TB_INVESTIMENTO WHERE id_investimento = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -44,30 +42,12 @@ public class InvestimentoDAO {
                     investimento.setTbInvestimento(rs.getString("tb_investimento"));
                     investimento.setMnInvestimento(rs.getString("mn_investimento"));
                     investimento.setVlInicial(rs.getFloat("vl_inicial"));
-                    investimento.setDtInvestimento(rs.getDate("dt_investimento"));
                     investimento.setVlRentabilidade(rs.getFloat("vl_rentabilidade"));
                     investimento.setDsRisco(rs.getString("ds_risco"));
-                    investimento.setDtVencimento(rs.getDate("dt_vencimento"));
                     return investimento;
                 }
             }
         }
         return null;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

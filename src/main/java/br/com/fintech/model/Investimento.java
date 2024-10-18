@@ -1,32 +1,27 @@
 package br.com.fintech.model;
 
-import java.util.Date;
-
-public class Investimento { private int idInvestimento;
+public class Investimento {
+    private int idInvestimento;
     private int idUsuario;
     private String tbInvestimento;
     private String mnInvestimento;
     private float vlInicial;
-    private Date dtInvestimento;
     private float vlRentabilidade;
     private String dsRisco;
-    private Date dtVencimento;
 
     // Construtor vazio
     public Investimento() {}
 
-    // Construtor completo
+    // Construtor completo (sem datas)
     public Investimento(int idInvestimento, int idUsuario, String tbInvestimento, String mnInvestimento, float vlInicial,
-                        Date dtInvestimento, float vlRentabilidade, String dsRisco, Date dtVencimento) {
+                        float vlRentabilidade, String dsRisco) {
         this.idInvestimento = idInvestimento;
         this.idUsuario = idUsuario;
         this.tbInvestimento = tbInvestimento;
         this.mnInvestimento = mnInvestimento;
         this.vlInicial = vlInicial;
-        this.dtInvestimento = dtInvestimento;
         this.vlRentabilidade = vlRentabilidade;
         this.dsRisco = dsRisco;
-        this.dtVencimento = dtVencimento;
     }
 
     // Getters e Setters
@@ -70,14 +65,6 @@ public class Investimento { private int idInvestimento;
         this.vlInicial = vlInicial;
     }
 
-    public Date getDtInvestimento() {
-        return dtInvestimento;
-    }
-
-    public void setDtInvestimento(Date dtInvestimento) {
-        this.dtInvestimento = dtInvestimento;
-    }
-
     public float getVlRentabilidade() {
         return vlRentabilidade;
     }
@@ -94,14 +81,6 @@ public class Investimento { private int idInvestimento;
         this.dsRisco = dsRisco;
     }
 
-    public Date getDtVencimento() {
-        return dtVencimento;
-    }
-
-    public void setDtVencimento(Date dtVencimento) {
-        this.dtVencimento = dtVencimento;
-    }
-
     @Override
     public String toString() {
         return "Investimento{" +
@@ -110,10 +89,8 @@ public class Investimento { private int idInvestimento;
                 ", tbInvestimento='" + tbInvestimento + '\'' +
                 ", mnInvestimento='" + mnInvestimento + '\'' +
                 ", vlInicial=" + vlInicial +
-                ", dtInvestimento=" + dtInvestimento +
                 ", vlRentabilidade=" + vlRentabilidade +
                 ", dsRisco='" + dsRisco + '\'' +
-                ", dtVencimento=" + dtVencimento +
                 '}';
     }
 }

@@ -66,25 +66,9 @@ public class CategoriaDAO {
         }
         return categorias;
     }
-
-    // Método para atualizar uma Categoria
-    public void atualizarCategoria(Categoria categoria) throws SQLException {
-        String sql = "UPDATE TB_FIN_CATEGORIA SET nm_categoria = ?, tp_categoria = ? WHERE id_categoria = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, categoria.getNmCategoria());
-            stmt.setString(2, categoria.getTpCategoria());
-            stmt.setInt(3, categoria.getIdCategoria());
-
-            stmt.executeUpdate();
-        }
+    public void fecharConexao() throws SQLException {
+        connection.close();
     }
 
-    // Método para excluir uma Categoria
-    public void excluirCategoria(int id) throws SQLException {
-        String sql = "DELETE FROM TB_FIN_CATEGORIA WHERE id_categoria = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        }
-    }
+
 }

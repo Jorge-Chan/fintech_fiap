@@ -1,75 +1,73 @@
 package br.com.fintech.view;
+
 import br.com.fintech.dao.InvestimentoDAO;
 import br.com.fintech.factory.ConnectionFactory;
 import br.com.fintech.model.Investimento;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.Scanner;
+
 public class CadastroInvestimentoView {
-    public static void main(String[] args) {
+
+    private Connection connection;
+
+    // Construtor que recebe a conexão com o banco de dados
+    public CadastroInvestimentoView(ConnectionFactory connectionFactory) throws SQLException, ClassNotFoundException {
+        this.connection = connectionFactory.getConnection(); // Inicializando a conexão
+    }
+
+    // Método para cadastrar um investimento (sem datas)
+    public void cadastrarInvestimento() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== Cadastro de Investimento ===");
+
+        System.out.print("ID do Usuário: ");
+        int idUsuario = scanner.nextInt();
+
+        System.out.print("Tipo de Investimento: ");
+        String tipoInvestimento = scanner.next();
+
+        System.out.print("Nome do Investimento: ");
+        String nomeInvestimento = scanner.next();
+
+        System.out.print("Valor Inicial: ");
+        float valorInicial = scanner.nextFloat();
+
+        System.out.print("Valor de Rentabilidade: ");
+        float valorRentabilidade = scanner.nextFloat();
+
+        System.out.print("Descrição do Risco: ");
+        String descricaoRisco = scanner.next();
+
         try {
-            // Obtém a conexão usando a ConnectionFactory
-            Connection connection = ConnectionFactory.getConnection();
+            // Preparando a consulta SQL para inserir um investimento (sem datas)
+            String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_usuario, tp_investimo, nm_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (?, ?, ?, ?, ?, ?)";
 
-            // Cria a instância da DAO para operações no banco de dados
-            InvestimentoDAO investimentoDAO = new InvestimentoDAO(connection);
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+            stmt.setString(2, tipoInvestimento);
+            stmt.setString(3, nomeInvestimento);
+            stmt.setFloat(4, valorInicial);
+            stmt.setFloat(5, valorRentabilidade);
+            stmt.setString(6, descricaoRisco);
 
-            // Captura os dados do novo investimento
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Cadastro de Investimento");
-
-            System.out.print("Digite o ID do Investimento: ");
-            int idInvestimento = scanner.nextInt();
-
-            System.out.print("Digite o ID do Usuário: ");
-            int idUsuario = scanner.nextInt();
-            scanner.nextLine(); // consome a quebra de linha
-
-            System.out.print("Digite a Tipo de Investimento: ");
-            String tbInvestimento = scanner.nextLine();
-
-            System.out.print("Digite a Modalidade de Investimento: ");
-            String mnInvestimento = scanner.nextLine();
-
-            System.out.print("Digite o Valor Inicial: ");
-            float vlInicial = scanner.nextFloat();
-
-            System.out.print("Digite a Data do Investimento (Formato: YYYY-MM-DD): ");
-            String dtInvestimentoStr = scanner.next();
-            Date dtInvestimento = java.sql.Date.valueOf(dtInvestimentoStr);
-
-            System.out.print("Digite a Rentabilidade: ");
-            float vlRentabilidade = scanner.nextFloat();
-
-            scanner.nextLine(); // consome a quebra de linha
-            System.out.print("Digite a Descrição do Risco: ");
-            String dsRisco = scanner.nextLine();
-
-            System.out.print("Digite a Data de Vencimento (Formato: YYYY-MM-DD): ");
-            String dtVencimentoStr = scanner.next();
-            Date dtVencimento = java.sql.Date.valueOf(dtVencimentoStr);
-
-            // Cria uma nova instância de Investimento
-            Investimento investimento = new Investimento(idInvestimento, idUsuario, tbInvestimento, mnInvestimento,
-                    vlInicial, dtInvestimento, vlRentabilidade, dsRisco, dtVencimento);
-
-            // Adiciona o investimento ao banco de dados
-            investimentoDAO.inserirInvestimento(investimento);
+            // Executando a inserção no banco de dados
+            stmt.executeUpdate();
+            stmt.close();
 
             System.out.println("Investimento cadastrado com sucesso!");
-
         } catch (SQLException e) {
-            System.out.println("Erro ao conectar ao banco de dados ou ao cadastrar o investimento.");
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Erro ao carregar o driver de banco de dados.");
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            System.out.println("Erro ao converter a data. Por favor, utilize o formato correto.");
-            e.printStackTrace();
+            System.out.println("Erro ao cadastrar o investimento.");
         }
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        ConnectionFactory connectionFactory = new ConnectionFactory(); // Inicializando a ConnectionFactory
+        CadastroInvestimentoView view = new CadastroInvestimentoView(connectionFactory); // Instanciando a view
+        view.cadastrarInvestimento(); // Chamando o método de cadastro
     }
 }

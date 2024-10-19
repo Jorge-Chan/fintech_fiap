@@ -1,14 +1,14 @@
 package br.com.fintech.view;
+
 import br.com.fintech.dao.TransacaoDAO;
 import br.com.fintech.factory.ConnectionFactory;
 import br.com.fintech.model.Transacao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.Scanner;
-public class CadastroTransacaoView {
 
+public class CadastroTransacaoView {
     public static void main(String[] args) {
         try {
             // Obtém a conexão usando a ConnectionFactory
@@ -34,15 +34,12 @@ public class CadastroTransacaoView {
         try {
             System.out.println("Cadastro de Transação");
 
-            System.out.print("Digite o ID da Transação: ");
-            int idTransacao = scanner.nextInt();
-
             System.out.print("Digite o ID do Usuário: ");
             int idUsuario = scanner.nextInt();
 
             System.out.print("Digite o ID da Categoria: ");
             int idCategoria = scanner.nextInt();
-            scanner.nextLine(); // consome a quebra de linha
+            scanner.nextLine(); // Consome a quebra de linha
 
             System.out.print("Digite o Tipo de Transação: ");
             String tpTransacao = scanner.nextLine();
@@ -53,11 +50,8 @@ public class CadastroTransacaoView {
             System.out.print("Digite o Valor da Transação: ");
             float vlTransacao = scanner.nextFloat();
 
-            System.out.print("Digite a Data da Transação (Formato: YYYY-MM-DD): ");
-            String dtTransacaoStr = scanner.next();
-            Date dtTransacao = java.sql.Date.valueOf(dtTransacaoStr);
-
-            Transacao transacao = new Transacao(idTransacao, idUsuario, idCategoria, tpTransacao, dsTransacao, vlTransacao, dtTransacao);
+            // Criação da instância de Transacao sem o ID e a Data
+            Transacao transacao = new Transacao( idUsuario, idCategoria, tpTransacao, dsTransacao, vlTransacao);
             transacaoDAO.inserirTransacao(transacao);
 
             System.out.println("Transação cadastrada com sucesso!");

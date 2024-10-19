@@ -20,9 +20,6 @@ public class CadastroPessoaJuridicaView {   public static void main(String[] arg
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Cadastro de Pessoa Jurídica");
-        System.out.print("Digite o ID da Pessoa: ");
-        int idPessoa = scanner.nextInt();
-        scanner.nextLine(); // consome a quebra de linha
 
         System.out.print("Digite o nome da Pessoa: ");
         String nmPessoa = scanner.nextLine();
@@ -33,10 +30,6 @@ public class CadastroPessoaJuridicaView {   public static void main(String[] arg
         System.out.print("Digite o Telefone: ");
         String nrTelefone = scanner.nextLine();
 
-        System.out.print("Digite o ID do Usuário: ");
-        int idUsuario = scanner.nextInt();
-        scanner.nextLine(); // consome a quebra de linha
-
         System.out.print("Digite o CNPJ: ");
         String dsCnpj = scanner.nextLine();
 
@@ -45,7 +38,7 @@ public class CadastroPessoaJuridicaView {   public static void main(String[] arg
 
         // Cria uma nova instância de PessoaJuridica com todos os parâmetros necessários
         PessoaJuridica pessoaJuridica = new PessoaJuridica(
-                idPessoa, nmPessoa, dsEndereco, nrTelefone, idUsuario, dsCnpj, nmRazaoSocial);
+                 nmPessoa, dsEndereco, nrTelefone, dsCnpj, nmRazaoSocial);
 
         // Adiciona a Pessoa Jurídica ao banco de dados
         pessoaJuridicaDAO.adicionar(pessoaJuridica);

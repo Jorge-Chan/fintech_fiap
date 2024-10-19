@@ -20,10 +20,6 @@ public class CadastroCategoriaView { public static void main(String[] args) {
 
         System.out.println("Cadastro de Categoria");
 
-        System.out.print("Digite o ID da Categoria: ");
-        int idCategoria = scanner.nextInt();
-        scanner.nextLine(); // consome a quebra de linha
-
         System.out.print("Digite o Nome da Categoria: ");
         String nmCategoria = scanner.nextLine();
 
@@ -31,7 +27,7 @@ public class CadastroCategoriaView { public static void main(String[] args) {
         String tpCategoria = scanner.nextLine();
 
         // Cria uma nova instância de Categoria
-        Categoria categoria = new Categoria(idCategoria, nmCategoria, tpCategoria);
+        Categoria categoria = new Categoria( nmCategoria, tpCategoria);
 
         // Adiciona a Categoria ao banco de dados
         categoriaDAO.inserirCategoria(categoria);

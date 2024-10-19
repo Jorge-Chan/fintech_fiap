@@ -1,35 +1,43 @@
 package br.com.fintech.model;
 
-import java.util.Date;
+public class Transacao {
 
-public class Transacao { private int idTransacao;
-    private int idUsuario;
+    private Long idTransacao;
+    private int idUsuario;      // Adicionado id_usuario
     private int idCategoria;
     private String tpTransacao;
     private String dsTransacao;
     private float vlTransacao;
-    private Date dtTransacao;
 
     // Construtor vazio
     public Transacao() {}
 
     // Construtor com parâmetros
-    public Transacao(int idTransacao, int idUsuario, int idCategoria, String tpTransacao, String dsTransacao, float vlTransacao, Date dtTransacao) {
+    public Transacao(Long idTransacao, int idUsuario, int idCategoria, String tpTransacao, String dsTransacao, float vlTransacao) {
         this.idTransacao = idTransacao;
-        this.idUsuario = idUsuario;
+        this.idUsuario = idUsuario;      // Atribuição do id_usuario
         this.idCategoria = idCategoria;
         this.tpTransacao = tpTransacao;
         this.dsTransacao = dsTransacao;
         this.vlTransacao = vlTransacao;
-        this.dtTransacao = dtTransacao;
     }
 
+    // Removido o erro de sintaxe aqui
+    public Transacao(int idUsuario, int idCategoria, String tpTransacao, String dsTransacao, float vlTransacao) {
+        this.idUsuario = idUsuario;      // Atribuição do id_usuario
+        this.idCategoria = idCategoria;
+        this.tpTransacao = tpTransacao;
+        this.dsTransacao = dsTransacao;
+        this.vlTransacao = vlTransacao;
+    }
+
+
     // Getters e Setters
-    public int getIdTransacao() {
+    public Long getIdTransacao() {
         return idTransacao;
     }
 
-    public void setIdTransacao(int idTransacao) {
+    public void setIdTransacao(Long idTransacao) {
         this.idTransacao = idTransacao;
     }
 
@@ -71,26 +79,5 @@ public class Transacao { private int idTransacao;
 
     public void setVlTransacao(float vlTransacao) {
         this.vlTransacao = vlTransacao;
-    }
-
-    public Date getDtTransacao() {
-        return dtTransacao;
-    }
-
-    public void setDtTransacao(Date dtTransacao) {
-        this.dtTransacao = dtTransacao;
-    }
-
-    @Override
-    public String toString() {
-        return "Transacao{" +
-                "idTransacao=" + idTransacao +
-                ", idUsuario=" + idUsuario +
-                ", idCategoria=" + idCategoria +
-                ", tpTransacao='" + tpTransacao + '\'' +
-                ", dsTransacao='" + dsTransacao + '\'' +
-                ", vlTransacao=" + vlTransacao +
-                ", dtTransacao=" + dtTransacao +
-                '}';
     }
 }

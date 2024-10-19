@@ -26,33 +26,38 @@ public class CadastroInvestimentoView {
 
         System.out.print("ID do Usuário: ");
         int idUsuario = scanner.nextInt();
+        scanner.nextLine(); // Consumir a nova linha após o nextInt()
 
         System.out.print("Tipo de Investimento: ");
-        String tipoInvestimento = scanner.next();
+        String tipoInvestimento = scanner.nextLine();
 
         System.out.print("Nome do Investimento: ");
-        String nomeInvestimento = scanner.next();
+        String nomeInvestimento = scanner.nextLine();
 
         System.out.print("Valor Inicial: ");
         float valorInicial = scanner.nextFloat();
 
         System.out.print("Valor de Rentabilidade: ");
         float valorRentabilidade = scanner.nextFloat();
+        scanner.nextLine(); // Consumir a nova linha após o nextFloat()
 
         System.out.print("Descrição do Risco: ");
-        String descricaoRisco = scanner.next();
+        String descricaoRisco = scanner.nextLine();
 
         try {
+            // Criando o objeto Investimento com os dados recebidos
+            Investimento investimento = new Investimento(idUsuario, tipoInvestimento, nomeInvestimento, valorInicial, valorRentabilidade, descricaoRisco);
+
             // Preparando a consulta SQL para inserir um investimento (sem datas)
-            String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_usuario, tp_investimo, nm_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_investimento, id_usuario, tp_investimento, nm_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (NULL, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
-            stmt.setString(2, tipoInvestimento);
-            stmt.setString(3, nomeInvestimento);
-            stmt.setFloat(4, valorInicial);
-            stmt.setFloat(5, valorRentabilidade);
-            stmt.setString(6, descricaoRisco);
+            stmt.setInt(1, investimento.getIdUsuario());
+            stmt.setString(2, investimento.getTpInvestimento());  // Corrigido para "tpInvestimento"
+            stmt.setString(3, investimento.getMnInvestimento());
+            stmt.setFloat(4, investimento.getVlInicial());
+            stmt.setFloat(5, investimento.getVlRentabilidade());
+            stmt.setString(6, investimento.getDsRisco());
 
             // Executando a inserção no banco de dados
             stmt.executeUpdate();

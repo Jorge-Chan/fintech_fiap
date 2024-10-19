@@ -3,21 +3,33 @@ package br.com.fintech.model;
 public class Investimento {
     private int idInvestimento;
     private int idUsuario;
-    private String tbInvestimento;
+    private String tpInvestimento;
     private String mnInvestimento;
     private float vlInicial;
     private float vlRentabilidade;
     private String dsRisco;
 
     // Construtor vazio
-    public Investimento() {}
+    public Investimento() {
+        this.idInvestimento = 0; // Inicializa idInvestimento como 0
+    }
 
     // Construtor completo (sem datas)
     public Investimento(int idInvestimento, int idUsuario, String tbInvestimento, String mnInvestimento, float vlInicial,
                         float vlRentabilidade, String dsRisco) {
         this.idInvestimento = idInvestimento;
         this.idUsuario = idUsuario;
-        this.tbInvestimento = tbInvestimento;
+        this.tpInvestimento = tpInvestimento;
+        this.mnInvestimento = mnInvestimento;
+        this.vlInicial = vlInicial;
+        this.vlRentabilidade = vlRentabilidade;
+        this.dsRisco = dsRisco;
+    }
+
+    public Investimento(int idUsuario, String tbInvestimento, String mnInvestimento, float vlInicial,
+                        float vlRentabilidade, String dsRisco) {
+        this.idUsuario = idUsuario;
+        this.tpInvestimento = tpInvestimento;
         this.mnInvestimento = mnInvestimento;
         this.vlInicial = vlInicial;
         this.vlRentabilidade = vlRentabilidade;
@@ -41,12 +53,12 @@ public class Investimento {
         this.idUsuario = idUsuario;
     }
 
-    public String getTbInvestimento() {
-        return tbInvestimento;
+    public String getTpInvestimento() {
+        return tpInvestimento;
     }
 
-    public void setTbInvestimento(String tbInvestimento) {
-        this.tbInvestimento = tbInvestimento;
+    public void setTpInvestimento(String tpInvestimento) {
+        this.tpInvestimento = tpInvestimento;
     }
 
     public String getMnInvestimento() {
@@ -79,18 +91,5 @@ public class Investimento {
 
     public void setDsRisco(String dsRisco) {
         this.dsRisco = dsRisco;
-    }
-
-    @Override
-    public String toString() {
-        return "Investimento{" +
-                "idInvestimento=" + idInvestimento +
-                ", idUsuario=" + idUsuario +
-                ", tbInvestimento='" + tbInvestimento + '\'' +
-                ", mnInvestimento='" + mnInvestimento + '\'' +
-                ", vlInicial=" + vlInicial +
-                ", vlRentabilidade=" + vlRentabilidade +
-                ", dsRisco='" + dsRisco + '\'' +
-                '}';
     }
 }

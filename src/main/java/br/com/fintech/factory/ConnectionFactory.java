@@ -46,5 +46,15 @@ public class ConnectionFactory {
                 }
             }
         }
+        // Método para fechar a conexão
+
     }
-}
+    // Método para fechar a conexão
+    public static void fecharConexao(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace(); // Logar a exceção
+            }
+}}}

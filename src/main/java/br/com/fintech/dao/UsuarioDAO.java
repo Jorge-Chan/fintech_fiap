@@ -1,79 +1,57 @@
 package br.com.fintech.dao;
 
+import br.com.fintech.exception.EntidadeNaoEcontradaException;
 import br.com.fintech.model.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UsuarioDAO {
+
     private Connection connection;
 
+    // Construtor que aceita a conexão
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
     }
 
+    public UsuarioDAO() {
+
+    }
+
     // Método para inserir um novo usuário
     public void inserirUsuario(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_USUARIO (id_usuario, nm_usuario, ds_email, dt_senha, dt_cadastro, tp_usuario) VALUES (1, 'Dante', 'ahahahaha', 'ajajajaj', 2024-10-30, 'aaaaa')";
+        String sql = "INSERT INTO TB_FIN_USUARIO2 (id_usuario, nm_usuario, ds_email, ds_senha, tp_usuario) " +
+                "VALUES (seq_usuario.nextval, ?, ?, ?, ?)";
+
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, usuario.getIdUsuario());
-            stmt.setString(2, usuario.getNmUsuario());
-            stmt.setString(3, usuario.getDsEmail());
-            stmt.setString(4, usuario.getDtSenha());
-            stmt.setDate(5, new java.sql.Date(usuario.getDtCadastro().getTime()));
-            stmt.setString(6, usuario.getTpUsuario());
-            stmt.executeUpdate();
+            stmt.setString(1, usuario.getNmUsuario()); // Nome do usuário
+            stmt.setString(2, usuario.getDsEmail());   // E-mail
+            stmt.setString(3, usuario.getDsSenha());    // Senha
+            stmt.setString(4, usuario.getTpUsuario());   // Tipo de usuário
+            stmt.executeUpdate();                        // Executa a inserção
         }
     }
 
-    // Método para buscar um usuário por ID
-    public Usuario buscarUsuarioPorId(int id) throws SQLException {
-        String sql = "SELECT id_usuario, nm_usuario, ds_email, dt_senha, dt_cadastro, tp_usuario FROM TB_FIN_USUARIO WHERE id_usuario = ?";
+    // Método para pesquisar usuário por ID
+    public Usuario pesquisar(Long idUsuario) throws SQLException, EntidadeNaoEcontradaException {
+        String sql = "SELECT * FROM TB_FIN_USUARIO2 WHERE id_usuario = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    Usuario usuario = new Usuario();
-                    usuario.setIdUsuario(rs.getInt("id_usuario"));
-                    usuario.setNmUsuario(rs.getString("nm_usuario"));
-                    usuario.setDsEmail(rs.getString("ds_email"));
-                    usuario.setDtSenha(rs.getString("dt_senha"));
-                    usuario.setDtCadastro(rs.getDate("dt_cadastro"));
-                    usuario.setTpUsuario(rs.getString("tp_usuario"));
-                    return usuario;
-                }
+            stmt.setLong(1, idUsuario);
+            ResultSet result = stmt.executeQuery();
+
+            if (!result.next()) {
+                throw new EntidadeNaoEcontradaException("Usuário não encontrado");
             }
-        }
-        return null;
-    }
 
-    // Método para atualizar um usuário
-    public void atualizarUsuario(Usuario usuario) throws SQLException {
-        String sql = "UPDATE TB_FIN_USUARIO SET nm_usuario = ?, ds_email = ?, dt_senha = ?, dt_cadastro = ?, tp_usuario = ? WHERE id_usuario = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, usuario.getNmUsuario());
-            stmt.setString(2, usuario.getDsEmail());
-            stmt.setString(3, usuario.getDtSenha());
-            stmt.setDate(4, new java.sql.Date(usuario.getDtCadastro().getTime()));
-            stmt.setString(5, usuario.getTpUsuario());
-            stmt.setInt(6, usuario.getIdUsuario());
-            stmt.executeUpdate();
-        }
-    }
+            String nome = result.getString("nm_usuario");
+            String email = result.getString("ds_email");
+            String senha = result.getString("ds_senha");
+            String tipo = result.getString("tp_usuario");
 
-    // Método para excluir um usuário
-    public void excluirUsuario(int id) throws SQLException {
-        String sql = "DELETE FROM TB_FIN_USUARIO WHERE id_usuario = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
+            return new Usuario(idUsuario, nome, email, senha, tipo);
         }
     }
 }
-
-
-
-
-

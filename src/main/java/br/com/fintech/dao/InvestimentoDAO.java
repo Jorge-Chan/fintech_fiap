@@ -17,11 +17,11 @@ public class InvestimentoDAO {
 
     // Inserir novo investimento (sem datas)
     public void inserirInvestimento(Investimento investimento) throws SQLException {
-        String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_investimento, id_usuario, tp_investimento, mn_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_FIN_INVESTIMENTO (id_investimento, id_usuario, tb_investimento, mn_investimento, vl_inicial, vl_rentabilidade, ds_risco) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, investimento.getIdInvestimento());
             stmt.setInt(2, investimento.getIdUsuario());
-            stmt.setString(3, investimento.getTpInvestimento());
+            stmt.setString(3, investimento.getTbInvestimento());
             stmt.setString(4, investimento.getMnInvestimento());
             stmt.setFloat(5, investimento.getVlInicial());
             stmt.setFloat(6, investimento.getVlRentabilidade());

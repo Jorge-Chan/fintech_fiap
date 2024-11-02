@@ -3,7 +3,7 @@ package br.com.fintech.model;
 public class Investimento {
     private int idInvestimento;
     private int idUsuario;
-    private String tpInvestimento;
+    private String tbInvestimento;
     private String mnInvestimento;
     private float vlInicial;
     private float vlRentabilidade;
@@ -19,7 +19,7 @@ public class Investimento {
                         float vlRentabilidade, String dsRisco) {
         this.idInvestimento = idInvestimento;
         this.idUsuario = idUsuario;
-        this.tpInvestimento = tpInvestimento;
+        this.tbInvestimento = tbInvestimento;
         this.mnInvestimento = mnInvestimento;
         this.vlInicial = vlInicial;
         this.vlRentabilidade = vlRentabilidade;
@@ -29,7 +29,7 @@ public class Investimento {
     public Investimento(int idUsuario, String tbInvestimento, String mnInvestimento, float vlInicial,
                         float vlRentabilidade, String dsRisco) {
         this.idUsuario = idUsuario;
-        this.tpInvestimento = tpInvestimento;
+        this.tbInvestimento = tbInvestimento;
         this.mnInvestimento = mnInvestimento;
         this.vlInicial = vlInicial;
         this.vlRentabilidade = vlRentabilidade;
@@ -53,12 +53,12 @@ public class Investimento {
         this.idUsuario = idUsuario;
     }
 
-    public String getTpInvestimento() {
-        return tpInvestimento;
+    public String getTbInvestimento() {
+        return tbInvestimento;
     }
 
     public void setTpInvestimento(String tpInvestimento) {
-        this.tpInvestimento = tpInvestimento;
+        this.tbInvestimento = tpInvestimento;
     }
 
     public String getMnInvestimento() {

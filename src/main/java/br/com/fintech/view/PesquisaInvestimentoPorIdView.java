@@ -15,7 +15,7 @@ public class PesquisaInvestimentoPorIdView {
             Investimento investimento = dao.pesquisar(1L); // Usando 1L para um valor Long
 
             if (investimento != null) { // Verifica se o investimento foi encontrado
-                System.out.println(investimento.getIdInvestimento() + " " + investimento.getIdUsuario() + " " + investimento.getTpInvestimento() + ", " + investimento.getMnInvestimento());
+                System.out.println(investimento.getIdInvestimento() + " " + investimento.getIdUsuario() + " " + investimento.getTbInvestimento() + ", " + investimento.getMnInvestimento());
                 System.out.printf("R$: %.2f, R$: %.2f%n", investimento.getVlInicial(), investimento.getVlRentabilidade());
             } else {
                 System.err.println("Investimento não encontrado.");

@@ -53,7 +53,7 @@ public class CadastroInvestimentoView {
 
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, investimento.getIdUsuario());
-            stmt.setString(2, investimento.getTpInvestimento());  // Corrigido para "tpInvestimento"
+            stmt.setString(2, investimento.getTbInvestimento());  // Corrigido para "tpInvestimento"
             stmt.setString(3, investimento.getMnInvestimento());
             stmt.setFloat(4, investimento.getVlInicial());
             stmt.setFloat(5, investimento.getVlRentabilidade());

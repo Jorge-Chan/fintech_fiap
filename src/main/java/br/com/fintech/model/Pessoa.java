@@ -1,6 +1,8 @@
 package br.com.fintech.model;
 
 public class Pessoa {
+
+    private int idPessoa;
     private String nmPessoa;
     private String dsEndereco;
     private String nrTelefone;
@@ -9,6 +11,13 @@ public class Pessoa {
     // Construtor vazio
     public Pessoa() {}
 
+    public Pessoa(int idPessoa, String nmPessoa, String dsEndereco, String nrTelefone) {
+        this.idPessoa = idPessoa;
+        this.nmPessoa = nmPessoa;
+        this.dsEndereco = dsEndereco;
+        this.nrTelefone = nrTelefone;
+        this.idUsuario = idUsuario;
+    }
     // Construtor com parâmetros
     public Pessoa(String nmPessoa, String dsEndereco, String nrTelefone) {
         this.nmPessoa = nmPessoa;
@@ -19,6 +28,14 @@ public class Pessoa {
 
     // Getters e Setters
 
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
+    }
 
     public String getNmPessoa() {
         return nmPessoa;

@@ -8,6 +8,12 @@ public class Categoria {  private int idCategoria;      // Chave primária
     public Categoria() {}
 
     // Construtor com parâmetros
+
+    public Categoria( int idCategoria, String nmCategoria, String tpCategoria) {
+        this.idCategoria = idCategoria;
+        this.nmCategoria = nmCategoria;
+        this.tpCategoria = tpCategoria;
+    }
     public Categoria(String nmCategoria, String tpCategoria) {
 
         this.nmCategoria = nmCategoria;
@@ -15,6 +21,15 @@ public class Categoria {  private int idCategoria;      // Chave primária
     }
 
     // Getters e Setters
+
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
 
     public String getNmCategoria() {
         return nmCategoria;
